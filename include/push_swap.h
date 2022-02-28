@@ -1,16 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: moseddik <moseddik@student.42.fr>          +#+  +:+       +#+        */
+/*   By: moseddik <moseddik@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/25 19:00:45 by moseddik          #+#    #+#             */
-/*   Updated: 2022/02/26 00:55:09 by moseddik         ###   ########.fr       */
+/*   Created: 2022/02/28 02:38:57 by moseddik           #+#    #+#             */
+/*   Updated: 2022/02/28 02:39:09 by moseddik          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int main()
-{
-   return (0); 
-}
+#ifndef PUSH_SWAP_H
+# define PUSH_SWAP_H
+
+#include <stdlib.h>
+#include "libft.h"
+
+#endif
