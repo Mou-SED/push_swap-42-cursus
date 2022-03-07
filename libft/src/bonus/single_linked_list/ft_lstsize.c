@@ -6,7 +6,7 @@
 /*   By: moseddik <moseddik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 22:49:41 by moseddik          #+#    #+#             */
-/*   Updated: 2021/11/20 19:29:45 by moseddik         ###   ########.fr       */
+/*   Updated: 2022/03/03 15:17:26 by moseddik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ int	ft_lstsize(t_list *lst)
 {
 	int	count;
 
+	if (!lst)
+		return (0);
 	count = 0;
 	while (lst != NULL)
 	{

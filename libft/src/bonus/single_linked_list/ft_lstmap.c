@@ -6,7 +6,7 @@
 /*   By: moseddik <moseddik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/20 00:49:13 by moseddik          #+#    #+#             */
-/*   Updated: 2021/11/20 19:14:42 by moseddik         ###   ########.fr       */
+/*   Updated: 2022/03/03 15:16:58 by moseddik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 	t_list	*ptr;
 	t_list	*temp;
 
+	if (!lst)
+		return (NULL);
 	ptr = NULL;
 	while (lst)
 	{

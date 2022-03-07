@@ -6,7 +6,7 @@
 /*   By: moseddik <moseddik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 15:59:50 by moseddik          #+#    #+#             */
-/*   Updated: 2022/02/17 22:24:16 by moseddik         ###   ########.fr       */
+/*   Updated: 2022/03/01 19:10:51 by moseddik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ t_list	*ft_lstnew(void *content)
 {
 	t_list	*head;
 
-	head = malloc(sizeof(head));
+	head = malloc(sizeof(t_list));
 	if (!head)
 		return (NULL);
 	head->content = content;
