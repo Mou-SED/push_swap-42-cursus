@@ -6,7 +6,7 @@
 /*   By: moseddik <moseddik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 18:39:14 by moseddik          #+#    #+#             */
-/*   Updated: 2022/02/25 18:58:02 by moseddik         ###   ########.fr       */
+/*   Updated: 2022/03/03 15:12:14 by moseddik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,9 @@
 void	ft_d_lstadd_back(t_d_list **alst, t_d_list *new)
 {
 	t_d_list	*ptr;
-
+	
+	if (!alst)
+		return ;
 	if (*alst == NULL)
 		*alst = new;
 	else
@@ -25,6 +27,6 @@ void	ft_d_lstadd_back(t_d_list **alst, t_d_list *new)
 			ptr = ptr->next;
 		ptr->next = new;
         new->prev = ptr;
-		new = ptr;
+		new->next = NULL;
 	}
 }
