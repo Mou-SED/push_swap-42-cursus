@@ -6,7 +6,7 @@
 #    By: moseddik <moseddik@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/21 20:18:19 by moseddik          #+#    #+#              #
-#    Updated: 2022/02/25 18:03:04 by moseddik         ###   ########.fr        #
+#    Updated: 2022/03/05 16:43:09 by moseddik         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ RED = \033[0;31m
 
 CC = gcc
 
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g
 
 SRCS = $(wildcard src/*.c) 
 
