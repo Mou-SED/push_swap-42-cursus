@@ -6,7 +6,7 @@
 /*   By: moseddik <moseddik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/27 17:21:32 by moseddik          #+#    #+#             */
-/*   Updated: 2022/03/28 15:58:28 by moseddik         ###   ########.fr       */
+/*   Updated: 2022/04/05 14:00:51 by moseddik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,13 @@ int normalize(t_d_list stk, int len)
 void stk_normalize(t_d_list **stk, int len)
 {
 	if(normalize(**stk, len))
+	{
 		p_rev_rotate(stk);
+		ft_printf("rrb\n");
+	}
 	else
+	{
 		p_rotate(stk);
+		ft_printf("rb\n");
+	}
 }
