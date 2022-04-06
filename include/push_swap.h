@@ -6,7 +6,7 @@
 /*   By: moseddik <moseddik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/27 17:53:24 by moseddik          #+#    #+#             */
-/*   Updated: 2022/04/05 12:53:21 by moseddik         ###   ########.fr       */
+/*   Updated: 2022/04/06 15:07:48 by moseddik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,17 +21,17 @@
 # define MAX_INT 2147483647
 # define MIN_INT -2147483648
 
-# define SA				display_actions(sa, "sa\n", &top)
-# define SB				display_actions(sb, "sb\n", &top)
-# define SS				display_actions(p_sswap, "ss\n", &top)
-# define PA				display_actions(pa, "pa\n", &top)
-# define PB				display_actions(pb, "pb\n", &top)
-# define RA				display_actions(ra, "ra\n", &top)
-# define RB				display_actions(rb, "rb\n", &top)
-# define RR				display_actions(p_rrotate, "rr\n", &top)
-# define RRA			display_actions(rra, "rra\n", &top)
-# define RRB			display_actions(rrb, "rrb\n", &top)
-# define RRR			display_actions(p_rrev_rotate, "rrr\n", &top)
+# define SA				display_actions(sa, "sa\n", top)
+# define SB				display_actions(sb, "sb\n", top)
+# define SS				display_actions(p_sswap, "ss\n", top)
+# define PA				display_actions(pa, "pa\n", top)
+# define PB				display_actions(pb, "pb\n", top)
+# define RA				display_actions(ra, "ra\n", top)
+# define RB				display_actions(rb, "rb\n", top)
+# define RR				display_actions(p_rrotate, "rr\n", top)
+# define RRA			display_actions(rra, "rra\n", top)
+# define RRB			display_actions(rrb, "rrb\n", top)
+# define RRR			display_actions(p_rrev_rotate, "rrr\n", top)
 
 // Doubly linked list struct
 typedef struct s_d_list
@@ -99,6 +99,11 @@ int         check_mid(t_d_list *top, int mid);
 int	        find_mid(t_d_list top, int len);
 int         normalize(t_d_list stk_a, int len);
 void        stk_normalize(t_d_list **stk_a,int len);
+void        quick_sort_a(p_stk  *top);
+void        normalize_b(p_stk  *top);
+void        rra_nums_of_flag_zero(p_stk  *top);
+void        ra_top_num(p_stk  *top);
+void        quick_sort(p_stk  *top, int value);
 
 // Stack functions
 t_d_list    *create_stack_a(t_d_list *top_a, char *str);
@@ -122,6 +127,6 @@ void        p_rev_rotate(t_d_list **top);
 void        rra(t_d_list **top_a);
 void        rrb(t_d_list **top_b);
 void        p_rrev_rotate(t_d_list **top_a, t_d_list **top_b);
-void        display_actions(void (*un_comm)(), char *operation_str, p_stk *top);
+void        display_actions(void (*action)(), char *operation_str, p_stk *top);
 
 #endif
