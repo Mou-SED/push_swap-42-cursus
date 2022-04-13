@@ -6,7 +6,7 @@
 /*   By: moseddik <moseddik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/11 17:46:46 by moseddik          #+#    #+#             */
-/*   Updated: 2022/03/30 15:46:28 by moseddik         ###   ########.fr       */
+/*   Updated: 2022/04/12 17:53:55 by moseddik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,19 +77,26 @@ int len_div_2(t_d_list top, int len)
 	return (tmp->content);
 }
 
-int check_mid(t_d_list *top, int mid)
+int check_mid(t_d_list *top, int mid, char c)
 {
 	t_d_list *tmp;
 
 	tmp = top;
 	while(tmp != NULL)
 	{
-		if(tmp->content <= mid)
-			return (1);
+		if (c == 'a')
+		{
+			if(tmp->content <= mid)
+				return (1);
+		}
+		if (c == 'b')
+		{
+			if(tmp->content >= mid)
+				return (1);
+		}
 		tmp = tmp->next;	
 	}
 	return (0);
-	
 }
 
 int	find_mid(t_d_list top, int len)

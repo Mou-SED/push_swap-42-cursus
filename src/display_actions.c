@@ -6,13 +6,13 @@
 /*   By: moseddik <moseddik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/03 13:51:51 by moseddik          #+#    #+#             */
-/*   Updated: 2022/04/04 12:38:31 by moseddik         ###   ########.fr       */
+/*   Updated: 2022/04/09 15:16:28 by moseddik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-void    display_actions(void (*action)(), char *operation_str, p_stk *top)
+void    display_actions(void (*action)(), char *operation_str, t_stk *top)
 {
 	if (action == &ra || action == &rra || action == &sa)
     	action(&top->stk_a);

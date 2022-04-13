@@ -1,6 +1,8 @@
 # programme name
 push_swap
 
+# json files
+*.json
 # Prerequisites
 *.d
 

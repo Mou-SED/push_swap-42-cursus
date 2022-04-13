@@ -6,20 +6,39 @@
 /*   By: moseddik <moseddik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 14:37:37 by moseddik          #+#    #+#             */
-/*   Updated: 2022/04/06 16:25:27 by moseddik         ###   ########.fr       */
+/*   Updated: 2022/04/13 00:03:35 by moseddik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-void    quick_sort_a(p_stk  *top)
+int optimaze_len(t_stk top, int pivot, int len)
 {
+    int i;
+    int skip_len;
+    t_d_list    *tmp;
+
+    i = 0;
+    skip_len = 0;
+    tmp = ft_d_lstlast(top.stk_a);
+    while(tmp && tmp->content > pivot)
+    {
+        tmp = tmp->prev;
+        ++skip_len;
+    }
+    return (len - skip_len);
+}
+
+void    quick_sort_a(t_stk  *top)
+{
+    t_d_list *tmp;
     int pivot;
+    int optimaze_length;
+    
     top->len_by_flag = len_stack_by_flag(top->stk_a, top->stk_a->flag);
     pivot = find_mid(*top->stk_a, len_stack_by_flag(top->stk_a, top->stk_a->flag));
-
-    t_d_list *tmp;
-
+    optimaze_length = optimaze_len(*top, pivot, top->len_by_flag);
+    printf("pivot :%d", pivot);
     tmp = top->stk_a;
     while(tmp && top->len_by_flag)
     {
@@ -29,11 +48,10 @@ void    quick_sort_a(p_stk  *top)
         {
             if (tmp->content <= pivot)
                 PB;
-            else
+            else if (tmp->content >= pivot)
                 RA;
-            if(top->stk_b && top->stk_b->next && top->stk_b->content < top->stk_b->next->content)
-                SB;
-            if(!check_mid(tmp, pivot))
+            --optimaze_length;
+            if(!check_mid(tmp, pivot, 'a') || optimaze_length == 0)
                 break ;
             tmp = tmp->next;
         }
@@ -41,10 +59,36 @@ void    quick_sort_a(p_stk  *top)
     }
 }
 
-void    normalize_b(p_stk  *top)
+//! ********************************Quick_B*************************************
+
+void    quick_sort_b(t_stk  *top)
 {
-    //if (top.stk_b)
-    //    pivot = find_mid(*top.stk_b, len_stk(*top.stk_b));
+    t_d_list *tmp;
+    int pivot;
+    
+    pivot = find_mid(*top->stk_b, len_stk(*top->stk_b));
+    printf("pivot_b :%d", pivot);
+    
+    tmp = top->stk_b;
+    while(tmp)
+    {
+        if (tmp->content >= pivot)
+        {
+            top->stk_b->flag++;
+            PA;
+        }
+        else if (tmp->content < pivot)
+            RB;
+        if(!check_mid(tmp, pivot, 'b'))
+            break ;
+        tmp = tmp->next;
+    }
+}
+
+//! ****************************************************************************
+
+void    normalize_b(t_stk  *top)
+{
     while(top->stk_b)
     {
         while(top->stk_b->content != get_min_number(*top->stk_b))
@@ -58,7 +102,7 @@ void    normalize_b(p_stk  *top)
     }
 }
 
-void    rra_nums_of_flag_zero(p_stk  *top)
+void    rra_nums_of_flag_zero(t_stk  *top)
 {
     t_d_list    *tmp;
     
@@ -75,7 +119,7 @@ void    rra_nums_of_flag_zero(p_stk  *top)
     }
 }
 
-void    ra_top_num(p_stk  *top)
+void    ra_top_num(t_stk  *top)
 {
     t_d_list    *tmp;
     
@@ -118,17 +162,18 @@ int number_of_int_with_flag_zero(t_d_list top_a)
     return (value);
 }
 
-void    quick_sort(p_stk  *top, int value)
+void    quick_sort(t_stk  *top, int value)
 {
     int with_flag_zero;
 
     if (value == 0)
     {
         quick_sort_a(top);
-        normalize_b(top);
-        quick_sort_a(top);
-        rra_nums_of_flag_zero(top);
-        normalize_b(top);
+        quick_sort_b(top);
+        // normalize_b(top);
+        // quick_sort_a(top);
+        // rra_nums_of_flag_zero(top);
+        // normalize_b(top);
     }
     if (value == 1)
     {

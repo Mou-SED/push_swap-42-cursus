@@ -6,7 +6,7 @@
 /*   By: moseddik <moseddik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/27 17:53:24 by moseddik          #+#    #+#             */
-/*   Updated: 2022/04/06 15:07:48 by moseddik         ###   ########.fr       */
+/*   Updated: 2022/04/12 22:30:43 by moseddik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,8 @@ typedef struct s_stk
     char        **spl;
 	int         len; // Leangth A
     int         len_by_flag;
-}       p_stk;
+    int         next_to_sort;
+}       t_stk;
 
 // Doubly linked list prototype
 t_d_list	*ft_d_lstnew(int content);
@@ -95,15 +96,16 @@ void        ft_print_error();
 
 // Sorting functions
 int         len_div_2(t_d_list top, int len);
-int         check_mid(t_d_list *top, int mid);
+int         check_mid(t_d_list *top, int mid, char c);
 int	        find_mid(t_d_list top, int len);
 int         normalize(t_d_list stk_a, int len);
 void        stk_normalize(t_d_list **stk_a,int len);
-void        quick_sort_a(p_stk  *top);
-void        normalize_b(p_stk  *top);
-void        rra_nums_of_flag_zero(p_stk  *top);
-void        ra_top_num(p_stk  *top);
-void        quick_sort(p_stk  *top, int value);
+void        quick_sort_a(t_stk  *top);
+void        normalize_b(t_stk  *top);
+void        rra_nums_of_flag_zero(t_stk  *top);
+void        ra_top_num(t_stk  *top);
+void        quick_sort(t_stk  *top, int value);
+void        sorting_3(t_stk *top);
 
 // Stack functions
 t_d_list    *create_stack_a(t_d_list *top_a, char *str);
@@ -127,6 +129,6 @@ void        p_rev_rotate(t_d_list **top);
 void        rra(t_d_list **top_a);
 void        rrb(t_d_list **top_b);
 void        p_rrev_rotate(t_d_list **top_a, t_d_list **top_b);
-void        display_actions(void (*action)(), char *operation_str, p_stk *top);
+void        display_actions(void (*action)(), char *operation_str, t_stk *top);
 
 #endif
