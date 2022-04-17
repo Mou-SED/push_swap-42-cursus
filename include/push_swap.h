@@ -6,7 +6,7 @@
 /*   By: moseddik <moseddik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/27 17:53:24 by moseddik          #+#    #+#             */
-/*   Updated: 2022/04/12 22:30:43 by moseddik         ###   ########.fr       */
+/*   Updated: 2022/04/14 14:03:40 by moseddik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ typedef struct s_stk
 	int         len; // Leangth A
     int         len_by_flag;
     int         next_to_sort;
+    int         max_a;
+    int         max_b;
 }       t_stk;
 
 // Doubly linked list prototype
@@ -101,6 +103,7 @@ int	        find_mid(t_d_list top, int len);
 int         normalize(t_d_list stk_a, int len);
 void        stk_normalize(t_d_list **stk_a,int len);
 void        quick_sort_a(t_stk  *top);
+void        quick_sort_b(t_stk  *top, int *next_one, int *sorted_array);
 void        normalize_b(t_stk  *top);
 void        rra_nums_of_flag_zero(t_stk  *top);
 void        ra_top_num(t_stk  *top);
@@ -130,5 +133,11 @@ void        rra(t_d_list **top_a);
 void        rrb(t_d_list **top_b);
 void        p_rrev_rotate(t_d_list **top_a, t_d_list **top_b);
 void        display_actions(void (*action)(), char *operation_str, t_stk *top);
+
+
+int         *content_of_next(t_stk *top);
+void        quicksort(int arr[], int lower, int upper);
+int         partition(int arr[], int lower, int upper);
+void        swap(int *first, int *second);
 
 #endif

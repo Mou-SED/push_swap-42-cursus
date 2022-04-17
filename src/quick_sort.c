@@ -6,39 +6,24 @@
 /*   By: moseddik <moseddik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 14:37:37 by moseddik          #+#    #+#             */
-/*   Updated: 2022/04/13 00:03:35 by moseddik         ###   ########.fr       */
+/*   Updated: 2022/04/17 15:32:34 by moseddik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-int optimaze_len(t_stk top, int pivot, int len)
-{
-    int i;
-    int skip_len;
-    t_d_list    *tmp;
-
-    i = 0;
-    skip_len = 0;
-    tmp = ft_d_lstlast(top.stk_a);
-    while(tmp && tmp->content > pivot)
-    {
-        tmp = tmp->prev;
-        ++skip_len;
-    }
-    return (len - skip_len);
-}
-
 void    quick_sort_a(t_stk  *top)
 {
     t_d_list *tmp;
     int pivot;
-    int optimaze_length;
+    static int next_one;
+    int *sorted_array;
+    
+    sorted_array = content_of_next(top);
     
     top->len_by_flag = len_stack_by_flag(top->stk_a, top->stk_a->flag);
     pivot = find_mid(*top->stk_a, len_stack_by_flag(top->stk_a, top->stk_a->flag));
-    optimaze_length = optimaze_len(*top, pivot, top->len_by_flag);
-    printf("pivot :%d", pivot);
+    
     tmp = top->stk_a;
     while(tmp && top->len_by_flag)
     {
@@ -48,37 +33,52 @@ void    quick_sort_a(t_stk  *top)
         {
             if (tmp->content <= pivot)
                 PB;
-            else if (tmp->content >= pivot)
+            else if (tmp->content > pivot)
                 RA;
-            --optimaze_length;
-            if(!check_mid(tmp, pivot, 'a') || optimaze_length == 0)
+            if(!check_mid(tmp, pivot, 'a'))
                 break ;
             tmp = tmp->next;
         }
         --top->len_by_flag;
     }
+    // while (!is_empty(top->stk_b))
+    //     quick_sort_b(top, &next_one, sorted_array);
+    quick_sort_b(top, &next_one, sorted_array);
+    // if (top->stk_a->content == top->next_to_sort)
+    //             RA;
 }
 
 //! ********************************Quick_B*************************************
 
-void    quick_sort_b(t_stk  *top)
+void    quick_sort_b(t_stk  *top, int *next_one, int *sorted_array)
 {
     t_d_list *tmp;
     int pivot;
+    static int flg;
+    
+    top->next_to_sort = sorted_array[*next_one];
     
     pivot = find_mid(*top->stk_b, len_stk(*top->stk_b));
-    printf("pivot_b :%d", pivot);
+    ++flg;
     
     tmp = top->stk_b;
     while(tmp)
     {
-        if (tmp->content >= pivot)
-        {
-            top->stk_b->flag++;
+        if (tmp->content >= pivot || len_stk(*top->stk_b) == 1)
+        {  
+            top->stk_b->flag = flg;
             PA;
         }
-        else if (tmp->content < pivot)
+        else if (tmp->content < pivot && tmp->content == top->next_to_sort)
+        {
+            ++(*next_one);
+            top->stk_b->flag = flg;
+            PA;
+        }
+        else if (tmp->content < pivot && tmp->content != top->next_to_sort)
             RB;
+        if (top->stk_a->content == top->next_to_sort)
+                RA;
         if(!check_mid(tmp, pivot, 'b'))
             break ;
         tmp = tmp->next;
@@ -86,6 +86,13 @@ void    quick_sort_b(t_stk  *top)
 }
 
 //! ****************************************************************************
+
+//! ****************************************************************************
+
+void    quick_sort_a_2()
+{
+    
+}
 
 void    normalize_b(t_stk  *top)
 {
@@ -169,7 +176,19 @@ void    quick_sort(t_stk  *top, int value)
     if (value == 0)
     {
         quick_sort_a(top);
-        quick_sort_b(top);
+        // while (!is_empty(top->stk_b))
+        //     quick_sort_b(top);
+        // quick_sort_a(top);
+        
+        // rra_nums_of_flag_zero(top);
+        // quick_sort_a(top);
+        // quick_sort_b(top);
+        // rra_nums_of_flag_zero(top);
+        // quick_sort_a(top);
+        // quick_sort_b(top);
+        // PA;
+        // quick_sort_a(top);
+        
         // normalize_b(top);
         // quick_sort_a(top);
         // rra_nums_of_flag_zero(top);
