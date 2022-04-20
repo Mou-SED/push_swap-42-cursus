@@ -6,7 +6,7 @@
 /*   By: moseddik <moseddik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 19:00:45 by moseddik          #+#    #+#             */
-/*   Updated: 2022/04/16 18:19:31 by moseddik         ###   ########.fr       */
+/*   Updated: 2022/04/20 21:53:14 by moseddik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,9 +86,9 @@ int main(int ac, char **av)
 		//! *																  */
 		//! * *************************************************************** */
 		
-		ft_printf("--------------------AFTER--------------------\n");
-		ft_stack_print(top.stk_a, "Stack A");
-		ft_stack_print(top.stk_b, "Stack B");
+		// ft_printf("--------------------AFTER--------------------\n");
+		// ft_stack_print(top.stk_a, "Stack A");
+		// ft_stack_print(top.stk_b, "Stack B");
 	}
 	return (0);
 }

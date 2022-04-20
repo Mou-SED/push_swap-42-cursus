@@ -6,7 +6,7 @@
 /*   By: moseddik <moseddik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/27 17:53:24 by moseddik          #+#    #+#             */
-/*   Updated: 2022/04/14 14:03:40 by moseddik         ###   ########.fr       */
+/*   Updated: 2022/04/20 12:15:23 by moseddik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,8 @@ typedef struct s_stk
     int         next_to_sort;
     int         max_a;
     int         max_b;
+    int         value_of_flag_zero;
+    int         top_flag_value;
 }       t_stk;
 
 // Doubly linked list prototype
@@ -103,6 +105,7 @@ int	        find_mid(t_d_list top, int len);
 int         normalize(t_d_list stk_a, int len);
 void        stk_normalize(t_d_list **stk_a,int len);
 void        quick_sort_a(t_stk  *top);
+void        quick_sort_a_2(t_stk  *top, int *next_one, int *sorted_array);
 void        quick_sort_b(t_stk  *top, int *next_one, int *sorted_array);
 void        normalize_b(t_stk  *top);
 void        rra_nums_of_flag_zero(t_stk  *top);
