@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: moseddik <moseddik@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mousedd <mousedd@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/27 17:53:24 by moseddik          #+#    #+#             */
-/*   Updated: 2022/04/22 03:29:28 by moseddik         ###   ########.fr       */
+/*   Updated: 2022/04/22 07:09:14 by mousedd          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,7 @@ int         check_error_overflow(char *str);
 void        check_dupl_args(char **str);
 int	        ft_strcmp(char *s1,char *s2);
 int         is_sorted(t_d_list *p_stack);
+int	        is_sorted_by_flag(t_d_list	*p_stack, int flag);
 int         is_empty(t_d_list *p_stack);
 int         ft_indexing(t_d_list *top);
 int         get_max_number(t_d_list stk_a);
@@ -107,12 +108,12 @@ int	        find_mid(t_d_list top, int len);
 int         normalize(t_d_list stk_a, int len);
 void        stk_normalize(t_d_list **stk_a,int len);
 void        quick_sort_a(t_stk  *top, int value);
-void        quick_sort_a_2(t_stk  *top, int *next_one, int *sorted_array, int value);
+void        quick_sort_a_2(t_stk  *top, int *next_one, int *sorted_array, int value, int flag_value);
 void        quick_sort_b(t_stk  *top, int *next_one, int *sorted_array);
 void        normalize_b(t_stk  *top);
 void        rra_nums_of_flag_zero(t_stk  *top);
 void        ra_top_num(t_stk  *top);
-void        quick_sort(t_stk  *top, int value);
+void        quick_sort(t_stk  *top, int *next_one, int *sorted_array, int value);
 void        sorting_3(t_stk *top);
 
 // Stack functions

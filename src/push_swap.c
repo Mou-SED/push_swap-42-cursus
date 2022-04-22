@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: moseddik <moseddik@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mousedd <mousedd@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 19:00:45 by moseddik          #+#    #+#             */
-/*   Updated: 2022/04/22 05:29:57 by moseddik         ###   ########.fr       */
+/*   Updated: 2022/04/22 09:50:06 by mousedd          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,8 +76,8 @@ int main(int ac, char **av)
 			sorting_3(&top);
 		else if (ac > 4)
 		{
-			quick_sort(&top, 0);
-			quick_sort(&top, 1);
+			quick_sort(&top, &(top.next_one), top.sorted_array, 0);
+			// quick_sort(&top, &(top.next_one), top.sorted_array, 1);
 		}
 		
 		
@@ -90,6 +90,7 @@ int main(int ac, char **av)
 		ft_printf("--------------------AFTER--------------------\n");
 		ft_stack_print(top.stk_a, "Stack A");
 		ft_stack_print(top.stk_b, "Stack B");
+		printf("this is the value of our next_to_sort:%d\n", top.next_to_sort);
 	}
 	return (0);
 }

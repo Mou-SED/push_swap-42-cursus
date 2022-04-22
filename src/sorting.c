@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sorting.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: moseddik <moseddik@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mousedd <mousedd@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/11 17:46:46 by moseddik          #+#    #+#             */
-/*   Updated: 2022/04/12 17:53:55 by moseddik         ###   ########.fr       */
+/*   Updated: 2022/04/22 06:29:05 by mousedd          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,24 @@ int is_sorted(t_d_list *p_stack)
 	else if(p_stack->content > p_stack->next->content)
 		value = 0;
 	return (is_sorted(p_stack->next) * value);
+}
+
+int	is_sorted_by_flag(t_d_list	*p_stack, int flag)
+{
+	int value;
+	
+	if (p_stack->flag == flag)
+	{
+		if(p_stack == NULL || p_stack->next == NULL)
+			return (1);
+		else if(p_stack->content < p_stack->next->content)
+			value = 1;
+		else if(p_stack->content > p_stack->next->content)
+			value = 0;
+		return (is_sorted(p_stack->next) * value);
+	}
+	else
+		return (0);
 }
 
 int get_max_number(t_d_list stk_a)

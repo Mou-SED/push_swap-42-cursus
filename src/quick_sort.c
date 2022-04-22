@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   quick_sort.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: moseddik <moseddik@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mousedd <mousedd@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 14:37:37 by moseddik          #+#    #+#             */
-/*   Updated: 2022/04/22 05:45:25 by moseddik         ###   ########.fr       */
+/*   Updated: 2022/04/22 10:29:30 by mousedd          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,56 +57,30 @@ void    quick_sort_a(t_stk  *top, int value)
 	int			pivot;
 	
 	
-	if (value == 0)
+	pivot = find_mid(*top->stk_a, len_stk(*top->stk_a));
+	tmp = top->stk_a;
+	while(tmp)
 	{
-		pivot = find_mid(*top->stk_a, len_stk(*top->stk_a));
-		tmp = top->stk_a;
-		while(tmp)
-		{
-			if (tmp->content <= pivot)
-				PB;
-			else if (tmp->content > pivot)
-				RA;
-			if(!check_mid(tmp, pivot, 'a'))
-				break ;
-			tmp = tmp->next;
-		}
-		while (!is_empty(top->stk_b))
-			quick_sort_b(top, &(top->next_one), top->sorted_array);
-			
-		//TODO: you have to move it!
-		while (top->stk_a->content == top->next_to_sort)
-		{
+		if (tmp->content <= pivot)
+			PB;
+		else if (tmp->content > pivot)
 			RA;
-			++(top->next_one);
-			top->next_to_sort = top->sorted_array[top->next_one];
-		}
-		while(top->stk_a->content != top->value_of_flag_zero)
-			quick_sort_a_2(top, &(top->next_one), top->sorted_array, value);
+		if(!check_mid(tmp, pivot, 'a'))
+			break ;
+		tmp = tmp->next;
 	}
-	else
-	{
-		pivot = find_mid(*top->stk_a, len_stack_by_flag(top->stk_a, top->stk_a->flag));
+	while (!is_empty(top->stk_b))
+		quick_sort_b(top, &(top->next_one), top->sorted_array);
 		
-		tmp = top->stk_a;
-		while(tmp)
-		{
-			if (tmp->content != top->next_to_sort)
-				PB;
-			else
-			{
-				RA;
-				++(top->next_one);
-				top->next_to_sort = top->sorted_array[top->next_one];
-			}
-			tmp = tmp->next;
-		}
-		while (!is_empty(top->stk_b))
-			quick_sort_b(top, &(top->next_one), top->sorted_array);
-			
-		while(top->stk_a->content != top->first_sort)
-			quick_sort_a_2(top, &(top->next_one), top->sorted_array, value);
+	//TODO: you have to move it!
+	while (top->stk_a->content == top->next_to_sort)
+	{
+		RA;
+		++(top->next_one);
+		top->next_to_sort = top->sorted_array[top->next_one];
 	}
+	// while(top->stk_a->content != top->value_of_flag_zero)
+	quick_sort_a_2(top, &(top->next_one), top->sorted_array, value, top->stk_a->flag);
 }
 
 //! ********************************Quick_B*************************************
@@ -116,9 +90,14 @@ void    quick_sort_b(t_stk  *top, int *next_one, int *sorted_array)
 	t_d_list	*tmp;
 	int 		pivot;
 	static int 	flg;
+	static int	remember_first_sort;
 
 	top->next_to_sort = sorted_array[*next_one];
-	top->first_sort = top->next_to_sort;
+	if (remember_first_sort == 0)
+	{
+		top->first_sort = top->next_to_sort;
+		remember_first_sort++;
+	}
 	pivot = find_mid(*top->stk_b, len_stk(*top->stk_b));
 	++flg;
 	
@@ -156,74 +135,74 @@ void    quick_sort_b(t_stk  *top, int *next_one, int *sorted_array)
 //! ****************************************************************************
 
 //! ********************************Quick_A_2***********************************
+int		len_above_first_sort(t_stk *top)
+{
+	t_d_list    *tmp;
+	int			count;
+	
+	count = 1;
+	tmp = top->stk_a;
+	while (tmp)
+	{
+		if (tmp->content != top->first_sort)
+		{
+			count++;
+			tmp = tmp->next;
+		}
+		else
+			break ;
+	}
+	return (count);
+}
 
-void    quick_sort_a_2(t_stk  *top, int *next_one, int *sorted_array, int value)
+void    quick_sort_a_2(t_stk  *top, int *next_one, int *sorted_array, int value, int flag_value)
 {
 	t_d_list *tmp;
 	int pivot;
 	
 	if (value == 0)
+		if (top->stk_a->flag == 0)
+			return ;
+	if (value == 1)
+		if (top->stk_a->flag == 1)
+			return ;
+	
+	pivot = find_mid(*top->stk_a, len_above_first_sort(top));
+	
+	
+	tmp = top->stk_a;
+	while(tmp)
 	{
-		pivot = find_mid(*top->stk_a, len_stk(*top->stk_a));
-		top->top_flag_value = top->stk_a->flag;
 		
-		tmp = top->stk_a;
-		while(tmp)
+		if (tmp->content <= pivot)
 		{
-			if (tmp->flag != top->top_flag_value)
-				tmp = tmp->next;
-			else
-			{
-				if (tmp->content <= pivot)
-				{
-					PB;
-					tmp = top->stk_a;
-				}
-				if (tmp->content == top->next_to_sort)
-				{
-					RA;
-					++(*next_one);
-					top->next_to_sort = sorted_array[*next_one];
-				}
-				if(!check_mid(tmp, pivot, 'a'))
-					break ;
-			}
-			if (tmp->flag == 0)
-			{
-				top->value_of_flag_zero = tmp->content;
-				break ;
-			}
+			PB;
+			tmp = top->stk_a;
 		}
-	}
-	else
-	{
-		pivot = find_mid(*top->stk_a, len_stk(*top->stk_a));
-		
-		tmp = top->stk_a;
-		while(tmp)
+		if (tmp->content == top->next_to_sort)
 		{
-			if (tmp->content <= pivot)
-			{
-				PB;
-				tmp = top->stk_a;
-			}
-			if (tmp->content == top->next_to_sort)
-			{
-				RA;
-				++(*next_one);
-				top->next_to_sort = sorted_array[*next_one];
-			}
-			if(!check_mid(tmp, pivot, 'a'))
+			RA;
+			++(*next_one);
+			top->next_to_sort = sorted_array[*next_one];
+		}
+		if(!check_mid(tmp, pivot, 'a'))
+			break ;
+		if (value == 0)
+		{
+			if (tmp->flag == 0)
 				break ;
-			if (tmp->content == top->first_sort)
-			{
+		}
+		if (value == 1)
+		{
+			if (tmp->flag == 1)
 				break ;
-			}
 		}
 	}
 	
 	if (top->stk_b != NULL)
 		top->len_b = len_stk(*top->stk_b);
+	printf("this is the len_b value:%d\n", top->len_b);
+	//TODO:Fix this part! 
 	while (!is_empty(top->stk_b))
 	{
 		if (top->stk_b->content == top->next_to_sort)
@@ -236,25 +215,34 @@ void    quick_sort_a_2(t_stk  *top, int *next_one, int *sorted_array, int value)
 		}
 		else
 		{
-			if (len_stk(*top->stk_b) > 2)
+			if (top->len_b > 2)
+			{
 				choise_rotate_or_revrotate(top, top->len_b, 'b');
+				printf("a9ayi!");
+			}
 			else
 			{
 				if (top->stk_b->next == NULL)
 				{
 					PA;
+					top->len_b--;
 					break ;
 				}
-				else if (top->stk_b->content <= top->stk_b->next->content)
+				else if (top->stk_b->content < tmp->next->content)
+				{
 					PA;
-				else
+					top->len_b--;
+				}
+				else if (top->stk_b->content > tmp->next->content)
 				{
 					SA;
 					PA;
+					top->len_b--;
 				}
 			}
 		}
 	}
+	quick_sort_a_2(top, &(top->next_one), top->sorted_array, value, top->stk_a->flag - 1);
 }
 
 //! ****************************************************************************
@@ -334,7 +322,7 @@ int number_of_int_with_flag_zero(t_d_list top_a)
 	return (value);
 }
 
-void    quick_sort(t_stk  *top, int value)
+void    quick_sort(t_stk  *top, int *next_one, int *sorted_array, int value)
 {
 	int with_flag_zero;
 
@@ -344,9 +332,20 @@ void    quick_sort(t_stk  *top, int value)
 	}
 	if (value == 1)
 	{
-		while (!is_sorted(top->stk_a))
+		while(top->stk_a->flag == 0)
 		{
-			quick_sort_a(top, value);
-		}  
+			if (top->stk_a->content != top->next_to_sort)
+				PB;
+			else
+			{
+				RA;
+				++(*next_one);
+				top->next_to_sort = sorted_array[*next_one];
+			}
+		}
+		while(!is_empty(top->stk_b))
+			quick_sort_b(top, &(top->next_one), top->sorted_array);
+		quick_sort_a_2(top, &(top->next_one), top->sorted_array, value, top->stk_a->flag);
+		
 	}
 }
