@@ -6,7 +6,7 @@
 /*   By: moseddik <moseddik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 11:50:09 by moseddik          #+#    #+#             */
-/*   Updated: 2022/04/14 13:58:57 by moseddik         ###   ########.fr       */
+/*   Updated: 2022/04/21 15:17:55 by moseddik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ int *content_of_next(t_stk *top)
     int i;
     t_d_list *tmp;
     
-    array = malloc(sizeof(int) * top->len);
+    array = malloc(sizeof(int) * top->len_a);
     i = 0;
     tmp = top->stk_a;
     while (tmp)
@@ -85,6 +85,6 @@ int *content_of_next(t_stk *top)
         i++;
         tmp = tmp->next;
     }
-    quicksort(array, 0, top->len - 1);
+    quicksort(array, 0, top->len_a - 1);
     return (array);
 }

@@ -6,7 +6,7 @@
 /*   By: moseddik <moseddik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 19:00:45 by moseddik          #+#    #+#             */
-/*   Updated: 2022/04/20 21:53:14 by moseddik         ###   ########.fr       */
+/*   Updated: 2022/04/22 05:29:57 by moseddik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int main(int ac, char **av)
 	{
 		top.stk_b = NULL;
 		i = 0;
-		top.len = 0;
+		top.len_a = 0;
 		top.spl = join_args(av);
 		check_dupl_args(top.spl);
 		while (top.spl[++i])
@@ -55,7 +55,7 @@ int main(int ac, char **av)
 			if (check_error(top.spl[i]) || check_error_overflow(top.spl[i]))
 				ft_print_error();
 			top.stk_a = create_stack_a(top.stk_a, top.spl[i]);
-			top.len++;
+			top.len_a++;
 		}
 		
 		if (is_sorted(top.stk_a))
@@ -71,12 +71,13 @@ int main(int ac, char **av)
 		//! *																  */
 		//! * *****************************************************************/
 		
+		top.sorted_array = content_of_next(&top);
 		if (ac == 4)
 			sorting_3(&top);
 		else if (ac > 4)
 		{
 			quick_sort(&top, 0);
-			// quick_sort(&top, 1);
+			quick_sort(&top, 1);
 		}
 		
 		
@@ -86,9 +87,9 @@ int main(int ac, char **av)
 		//! *																  */
 		//! * *************************************************************** */
 		
-		// ft_printf("--------------------AFTER--------------------\n");
-		// ft_stack_print(top.stk_a, "Stack A");
-		// ft_stack_print(top.stk_b, "Stack B");
+		ft_printf("--------------------AFTER--------------------\n");
+		ft_stack_print(top.stk_a, "Stack A");
+		ft_stack_print(top.stk_b, "Stack B");
 	}
 	return (0);
 }
