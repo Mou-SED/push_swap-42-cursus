@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mousedd <mousedd@student.42.fr>            +#+  +:+       +#+        */
+/*   By: moseddik <moseddik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 19:00:45 by moseddik          #+#    #+#             */
-/*   Updated: 2022/04/22 09:50:06 by mousedd          ###   ########.fr       */
+/*   Updated: 2022/04/23 03:02:39 by moseddik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ int main(int ac, char **av)
 		else if (ac > 4)
 		{
 			quick_sort(&top, &(top.next_one), top.sorted_array, 0);
-			// quick_sort(&top, &(top.next_one), top.sorted_array, 1);
+			quick_sort(&top, &(top.next_one), top.sorted_array, 1);
 		}
 		
 		
