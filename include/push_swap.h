@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mousedd <mousedd@student.42.fr>            +#+  +:+       +#+        */
+/*   By: moseddik <moseddik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/27 17:53:24 by moseddik          #+#    #+#             */
-/*   Updated: 2022/04/22 07:09:14 by mousedd          ###   ########.fr       */
+/*   Updated: 2022/04/26 02:14:09 by moseddik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-#include "../ft_printf/ft_printf.h"
+#include "../lib/ft_printf/ft_printf.h"
 
 #include <stdlib.h>
 #include <stdio.h>
@@ -65,13 +65,11 @@ int			ft_d_lstsize(t_d_list *lst);
 void		ft_d_lstadd_front(t_d_list **alst, t_d_list *new);
 void		ft_d_lstadd_back(t_d_list **alst, t_d_list *new);
 t_d_list	*ft_d_lstlast(t_d_list *lst);
+void	    ft_d_lstdelone(t_d_list *lst, void (*del) (void *));
+void	    ft_d_lstclear(t_d_list **lst, void (*del)(void *));
 
 // Libft functions prototype
 int	        ft_isdigit(int c);
-static  int count_word(char const *s, char c);
-static char	*ft_strcpy(char *dst, const char *src);
-static void	*free_tab(char **tab, int index );
-static char	**remplis(char **splitstr, char const *s, char c, int num_of_word);
 char	    **ft_split(char const *s, char c);
 char	    *ft_strjoin(char const *s1, char const *s2);
 size_t	    ft_strlen(const	char	*s);
@@ -90,7 +88,6 @@ int         check_error_overflow(char *str);
 void        check_dupl_args(char **str);
 int	        ft_strcmp(char *s1,char *s2);
 int         is_sorted(t_d_list *p_stack);
-int	        is_sorted_by_flag(t_d_list	*p_stack, int flag);
 int         is_empty(t_d_list *p_stack);
 int         ft_indexing(t_d_list *top);
 int         get_max_number(t_d_list stk_a);
@@ -100,23 +97,27 @@ void	    ft_bzero(void *s, size_t n);
 void	    *ft_calloc(size_t count, size_t size);
 void	    ft_stack_print(t_d_list *stack, char *name);
 void        ft_print_error();
+void        free_tab_without_index(char **tab);
 
 // Sorting functions
 int         len_div_2(t_d_list top, int len);
 int         check_mid(t_d_list *top, int mid, char c);
-int	        find_mid(t_d_list top, int len);
+int	        find_mid(t_stk *top, int len, int value, char stack_name);
 int         normalize(t_d_list stk_a, int len);
 void        stk_normalize(t_d_list **stk_a,int len);
-void        quick_sort_a(t_stk  *top, int value);
-void        quick_sort_a_2(t_stk  *top, int *next_one, int *sorted_array, int value, int flag_value);
-void        quick_sort_b(t_stk  *top, int *next_one, int *sorted_array);
+void        begin_sort(t_stk  *top);
+void        part1_sort(t_stk  *top);
+void        part2_sort(t_stk  *top);
+void        quick_sort_b(t_stk  *top);
 void        normalize_b(t_stk  *top);
-void        rra_nums_of_flag_zero(t_stk  *top);
-void        ra_top_num(t_stk  *top);
-void        quick_sort(t_stk  *top, int *next_one, int *sorted_array, int value);
+void        main_sorting(t_stk  *top, int value);
 void        sorting_3(t_stk *top);
+void	    choise_rotate_or_revrotate(t_stk  *top, int len);
+void	    move_next_to_sort(t_stk  *top);
+void	    push_next_sort_a(t_stk  *top);
 
 // Stack functions
+int         ft_create_stack(t_stk *top, char **av);
 t_d_list    *create_stack_a(t_d_list *top_a, char *str);
 int         len_stk(t_d_list stk_a);
 t_d_list	*duplicate_stack(t_d_list *top, int len);
@@ -140,7 +141,7 @@ void        rrb(t_d_list **top_b);
 void        p_rrev_rotate(t_d_list **top_a, t_d_list **top_b);
 void        display_actions(void (*action)(), char *operation_str, t_stk *top);
 
-
+// Normal quickSort Algorithm for sorting the array
 int         *content_of_next(t_stk *top);
 void        quicksort(int arr[], int lower, int upper);
 int         partition(int arr[], int lower, int upper);
