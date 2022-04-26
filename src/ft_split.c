@@ -6,7 +6,7 @@
 /*   By: moseddik <moseddik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/14 22:49:31 by moseddik          #+#    #+#             */
-/*   Updated: 2022/03/18 15:52:55 by moseddik         ###   ########.fr       */
+/*   Updated: 2022/04/25 23:31:21 by moseddik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static char	*ft_strcpy(char *dst, const char *src)
 	return (dst);
 }
 
-static void	*free_tab(char **tab, int index )
+static void	*free_tab(char **tab, int index)
 {
 	while (--index)
 		free(tab[index]);
