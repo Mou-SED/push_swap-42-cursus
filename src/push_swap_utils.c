@@ -6,7 +6,7 @@
 /*   By: moseddik <moseddik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 20:38:35 by moseddik          #+#    #+#             */
-/*   Updated: 2022/03/10 20:40:42 by moseddik         ###   ########.fr       */
+/*   Updated: 2022/04/25 23:08:25 by moseddik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,14 @@
 int is_plus_or_minus(int c)
 {
    if (c == '+' || c == '-')
-      return (!0);
+	  return (!0);
    return (0);
 }
 
 int is_space(int c)
 {
    if (c == ' ' || c == '\t' || c == 32)
-      return (!0);
+	  return (!0);
    return (0);
 }
 
@@ -33,21 +33,20 @@ char	*ft_strjoin_char(char *s1, char const *s2, char c)
 	char	*newstr;
 
 	if (!s1)
-   { 
-      s1 = (char *)malloc(sizeof(char) * 1);
-      s1[0] = '\0';        
-   }
+	{ 
+		s1 = (char *)malloc(sizeof(char) * 1);
+		if (s1 == NULL)
+		return (NULL);
+		s1[0] = '\0';        
+	}
 	newstr = (char *)malloc((sizeof(char)
 				* (ft_strlen(s1) + ft_strlen(s2) + 2)));
 	if (!newstr)
 		return (NULL);
-	i = 0;
-	while (s1[i] != '\0')
-	{
+	i = -1;
+	while (s1[++i] != '\0')
 		newstr[i] = s1[i];
-		i++;
-	}
-   newstr[i++] = c;
+	newstr[i++] = c;
 	j = 0;
 	while (s2[j] != '\0')
 		newstr[i++] = s2[j++];
@@ -57,16 +56,25 @@ char	*ft_strjoin_char(char *s1, char const *s2, char c)
 
 char **join_args(char **str)
 {
-   char *ptr;
-   char **ptr2;
-   int i;
-   
-   ptr = NULL;
-   i = 0;
-   while(str[i])
-      ptr = ft_strjoin_char(ptr, str[i++], ' ');
-   ptr2 = ft_split(ptr,' ');
-   return (ptr2);
+	char *ptr;
+	char **ptr2;
+	int i;
+
+	ptr = NULL;
+	i = 0;
+	while(str[i] != NULL)
+	{
+		ptr = ft_strjoin_char(ptr, str[i++], ' ');
+		if (ptr == NULL)
+			return (NULL);
+	}
+	ptr2 = ft_split(ptr,' ');
+	if (ptr2 == NULL)
+	{
+		free(ptr);
+		return (NULL);
+	}
+	return (ptr2);
 }
 
 long long ft_atoi_long(const char *str)

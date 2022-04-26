@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sorting.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mousedd <mousedd@student.42.fr>            +#+  +:+       +#+        */
+/*   By: moseddik <moseddik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/11 17:46:46 by moseddik          #+#    #+#             */
-/*   Updated: 2022/04/22 06:29:05 by mousedd          ###   ########.fr       */
+/*   Updated: 2022/04/26 01:33:04 by moseddik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 int is_sorted(t_d_list *p_stack)
 {   
 	int value;
-	
+
+	value = 0;
 	if(p_stack == NULL || p_stack->next == NULL)
 		return (1);
 	else if(p_stack->content < p_stack->next->content)
@@ -23,24 +24,6 @@ int is_sorted(t_d_list *p_stack)
 	else if(p_stack->content > p_stack->next->content)
 		value = 0;
 	return (is_sorted(p_stack->next) * value);
-}
-
-int	is_sorted_by_flag(t_d_list	*p_stack, int flag)
-{
-	int value;
-	
-	if (p_stack->flag == flag)
-	{
-		if(p_stack == NULL || p_stack->next == NULL)
-			return (1);
-		else if(p_stack->content < p_stack->next->content)
-			value = 1;
-		else if(p_stack->content > p_stack->next->content)
-			value = 0;
-		return (is_sorted(p_stack->next) * value);
-	}
-	else
-		return (0);
 }
 
 int get_max_number(t_d_list stk_a)
@@ -117,14 +100,28 @@ int check_mid(t_d_list *top, int mid, char c)
 	return (0);
 }
 
-int	find_mid(t_d_list top, int len)
+int	find_mid(t_stk *top, int len, int value, char stack_name)
 {
 	int swap;
 	t_d_list *tmp;
 	t_d_list *tmp2;
 	t_d_list *head;
+	t_d_list *stack;
 	
-	tmp = duplicate_stack(&top, len);
+	if (stack_name == 'a')
+		stack = top->stk_a;
+	if (stack_name == 'b')
+		stack = top->stk_b;
+	if (value == 1)
+		tmp = duplicate_stack(stack, len - 1);
+	else
+		tmp = duplicate_stack(stack, len);
+	if (tmp == NULL)
+	{
+		free_tab_without_index(top->spl);
+		ft_d_lstclear(&stack, &free);
+		exit(-1);
+	}
 	head = tmp;
 	while (!is_sorted(head) && tmp != NULL)
 	{
