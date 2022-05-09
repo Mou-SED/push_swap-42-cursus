@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   doubly_linked_list.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: moseddik <moseddik@student.42.fr>          +#+  +:+       +#+        */
+/*   By: moseddik <moseddik@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 15:50:38 by moseddik          #+#    #+#             */
-/*   Updated: 2022/03/29 17:56:52 by moseddik         ###   ########.fr       */
+/*   Updated: 2022/05/09 14:07:13 by moseddik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,15 +34,15 @@ void	ft_d_lstadd_front(t_d_list **alst, t_d_list *new)
 	else
 	{
 		new->next = *alst;
-    	(*alst)->prev = new;
-    	*alst = new;
+		(*alst)->prev = new;
+		*alst = new;
 	}
 }
 
 void	ft_d_lstadd_back(t_d_list **alst, t_d_list *new)
 {
 	t_d_list	*ptr;
-	
+
 	if (!alst)
 		return ;
 	if (*alst == NULL)
@@ -53,11 +53,10 @@ void	ft_d_lstadd_back(t_d_list **alst, t_d_list *new)
 		while (ptr->next != NULL)
 			ptr = ptr->next;
 		ptr->next = new;
-        new->prev = ptr;
+		new->prev = ptr;
 		new->next = NULL;
 	}
 }
-
 
 t_d_list	*ft_d_lstlast(t_d_list *lst)
 {
@@ -69,20 +68,4 @@ t_d_list	*ft_d_lstlast(t_d_list *lst)
 	while (ptr->next != NULL)
 		ptr = ptr->next;
 	return (ptr);
-}
-
-
-int	ft_d_lstsize(t_d_list *lst)
-{
-	int	count;
-
-	if (!lst)
-		return (0);
-	count = 0;
-	while (lst != NULL)
-	{
-		count++;
-		lst = lst->next;
-	}
-	return (count);
 }
