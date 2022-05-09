@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap_utils2.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: moseddik <moseddik@student.42.fr>          +#+  +:+       +#+        */
+/*   By: moseddik <moseddik@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 20:52:38 by moseddik          #+#    #+#             */
-/*   Updated: 2022/03/18 15:48:30 by moseddik         ###   ########.fr       */
+/*   Updated: 2022/05/09 14:16:57 by moseddik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,6 @@ int	ft_strcmp(char *s1,char *s2)
 			return ((unsigned char)s1[i] - (unsigned char)s2[i]);
 	}
 	return (0);
-}
-
-int is_empty(t_d_list *p_stack)
-{
-    if (p_stack == NULL)
-        return (1);
-    return (0);
 }
 
 int	ft_atoi(const char *str)

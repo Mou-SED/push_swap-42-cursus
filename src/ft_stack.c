@@ -6,7 +6,7 @@
 /*   By: moseddik <moseddik@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/27 17:08:36 by moseddik          #+#    #+#             */
-/*   Updated: 2022/05/04 10:29:02 by moseddik         ###   ########.fr       */
+/*   Updated: 2022/05/09 14:17:05 by moseddik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,4 +79,11 @@ t_d_list	*duplicate_stack(t_d_list *top_stack, int len)
 		--len;
 	}
 	return (head);
+}
+
+int is_empty(t_d_list *p_stack)
+{
+    if (p_stack == NULL)
+        return (1);
+    return (0);
 }
