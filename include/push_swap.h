@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: moseddik <moseddik@student.42.fr>          +#+  +:+       +#+        */
+/*   By: moseddik <moseddik@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/27 17:53:24 by moseddik          #+#    #+#             */
-/*   Updated: 2022/04/26 02:14:09 by moseddik         ###   ########.fr       */
+/*   Updated: 2022/05/05 08:35:43 by moseddik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-#include "../lib/ft_printf/ft_printf.h"
+#include "../lib/ft_printf/include/ft_printf.h"
 
 #include <stdlib.h>
 #include <stdio.h>
@@ -48,14 +48,14 @@ typedef struct s_stk
     t_d_list    *stk_b;
     char        *max_number;
     char        **spl;
-	int         len_a; // Leangth A
+    int         pivot;
+	int         len_a;
     int         len_b;
     int         len_by_flag;
     int         next_one;
     int         next_to_sort;
     int         first_sort;
     int         *sorted_array;
-    int         value_of_flag_zero;
     int         top_flag_value;
 }       t_stk;
 
@@ -102,7 +102,7 @@ void        free_tab_without_index(char **tab);
 // Sorting functions
 int         len_div_2(t_d_list top, int len);
 int         check_mid(t_d_list *top, int mid, char c);
-int	        find_mid(t_stk *top, int len, int value, char stack_name);
+int	        find_mid(t_stk *top, int len, char stack_name);
 int         normalize(t_d_list stk_a, int len);
 void        stk_normalize(t_d_list **stk_a,int len);
 void        begin_sort(t_stk  *top);
@@ -120,6 +120,7 @@ void	    push_next_sort_a(t_stk  *top);
 int         ft_create_stack(t_stk *top, char **av);
 t_d_list    *create_stack_a(t_d_list *top_a, char *str);
 int         len_stk(t_d_list stk_a);
+t_d_list	*sort_duplicate_stack(t_d_list *dupl_stk);
 t_d_list	*duplicate_stack(t_d_list *top, int len);
 int         len_stack_by_flag(t_d_list *top, int flag);
 

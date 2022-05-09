@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_stack.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: moseddik <moseddik@student.42.fr>          +#+  +:+       +#+        */
+/*   By: moseddik <moseddik@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/27 17:08:36 by moseddik          #+#    #+#             */
-/*   Updated: 2022/04/25 23:45:54 by moseddik         ###   ########.fr       */
+/*   Updated: 2022/05/04 10:29:02 by moseddik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,20 @@ int len_stk(t_d_list stack)
 	return (len);
 }
 
-t_d_list	*duplicate_stack(t_d_list *top, int len)
+int len_stack_by_flag(t_d_list *top, int flag)
+{
+	int len;
+	
+	len = 1;
+	while (top && top->flag == flag)
+	{
+		++len;
+		top = top->next;
+	}
+	return (len);
+}
+
+t_d_list	*duplicate_stack(t_d_list *top_stack, int len)
 {
 	t_d_list    *tmp;
 	t_d_list    *head;
@@ -52,32 +65,18 @@ t_d_list	*duplicate_stack(t_d_list *top, int len)
 	if (tmp == NULL)
 		return (NULL);
 	head = tmp;
-	while (top && len)
+	while (top_stack && len)
 	{
-		tmp->content = top->content;
-		if (top->next)
+		tmp->content = top_stack->content;
+		if (top_stack->next)
 		{
 			tmp->next = ft_calloc(1, sizeof(t_d_list));
 			if (tmp->next == NULL)
 				return (NULL);
 			tmp = tmp->next;
 		}
-		top = top->next;
+		top_stack = top_stack->next;
 		--len;
 	}
-	tmp = head;
-	return (tmp);
-}
-
-int len_stack_by_flag(t_d_list *top, int flag)
-{
-	int len;
-	
-	len = 0;
-	while (top && top->flag == flag)
-	{
-		++len;
-		top = top->next;
-	}
-	return (len);
+	return (head);
 }

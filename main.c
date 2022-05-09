@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: moseddik <moseddik@student.42.fr>          +#+  +:+       +#+        */
+/*   By: moseddik <moseddik@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 19:00:45 by moseddik          #+#    #+#             */
-/*   Updated: 2022/04/26 03:06:41 by moseddik         ###   ########.fr       */
+/*   Updated: 2022/05/05 12:16:33 by moseddik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/push_swap.h"
+#include "include/push_swap.h"
 
 int main(int ac, char **av)
 {
@@ -44,8 +44,8 @@ int main(int ac, char **av)
 		else if (ac > 4)
 		{
 			main_sorting(&top, 0);
-			while (!is_sorted(top.stk_a))
-				main_sorting(&top, 1);
+			// while (!is_sorted(top.stk_a))
+			main_sorting(&top, 1);
 		}
 
 		//! * *************************************************************** */

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: moseddik <moseddik@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mousedd <mousedd@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/06 16:56:03 by moseddik          #+#    #+#             */
-/*   Updated: 2021/12/12 15:16:38 by moseddik         ###   ########.fr       */
+/*   Updated: 2022/04/29 15:05:41 by mousedd          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "include/ft_printf.h"
 
 void	ft_putnbr(int *len, int value, ...)
 {
@@ -61,7 +61,7 @@ void	ft_puthex_p_x(int *len, int value, ...)
 	else
 		nb = va_arg(args, unsigned int);
 	va_end(args);
-	if (nb < 0)
+	if ((int)nb < 0)
 	{
 		nb *= -1;
 		ft_putchar('-', len);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   doubly_linked_list_2.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: moseddik <moseddik@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mousedd <mousedd@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/25 23:16:09 by moseddik          #+#    #+#             */
-/*   Updated: 2022/04/26 00:09:40 by moseddik         ###   ########.fr       */
+/*   Updated: 2022/04/28 07:48:12 by mousedd          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ void	ft_d_lstclear(t_d_list **lst, void (*del)(void *))
 {
 	t_d_list	*tmp;
 
-    if (del == NULL || lst == NULL)
-        return ;
+	if (del == NULL || lst == NULL)
+		return ;
 	while (*lst != NULL)
 	{
 		tmp = *lst;

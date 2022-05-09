@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sorting.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: moseddik <moseddik@student.42.fr>          +#+  +:+       +#+        */
+/*   By: moseddik <moseddik@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/11 17:46:46 by moseddik          #+#    #+#             */
-/*   Updated: 2022/04/26 01:33:04 by moseddik         ###   ########.fr       */
+/*   Updated: 2022/05/04 10:27:54 by moseddik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,9 @@ int is_sorted(t_d_list *p_stack)
 
 int get_max_number(t_d_list stk_a)
 {
-	int i;
 	int max;
 	t_d_list *tmp;
 	
-	i = 0;
 	tmp = &stk_a;
 	max = stk_a.content;
 	while (tmp)
@@ -46,11 +44,9 @@ int get_max_number(t_d_list stk_a)
 
 int get_min_number(t_d_list stk_a)
 {
-	int i;
 	int min;
 	t_d_list *tmp;
 	
-	i = 0;
 	tmp = &stk_a;
 	min = stk_a.content;
 	while (tmp)
@@ -78,65 +74,67 @@ int len_div_2(t_d_list top, int len)
 	return (tmp->content);
 }
 
-int check_mid(t_d_list *top, int mid, char c)
+int check_mid(t_d_list *top_stack, int mid, char c)
 {
 	t_d_list *tmp;
 
-	tmp = top;
+	tmp = top_stack;
 	while(tmp != NULL)
 	{
 		if (c == 'a')
-		{
 			if(tmp->content <= mid)
 				return (1);
-		}
 		if (c == 'b')
-		{
 			if(tmp->content >= mid)
 				return (1);
-		}
 		tmp = tmp->next;	
 	}
 	return (0);
 }
 
-int	find_mid(t_stk *top, int len, int value, char stack_name)
+t_d_list	*sort_duplicate_stack(t_d_list *dupl_stk)
 {
-	int swap;
-	t_d_list *tmp;
-	t_d_list *tmp2;
-	t_d_list *head;
+	int			swap;
+	t_d_list	*head;
+	t_d_list	*tmp;
+	
+	head = dupl_stk;
+	while (!is_sorted(head) && dupl_stk != NULL)
+	{
+		tmp = dupl_stk->next;
+		while(tmp)
+		{
+			if (dupl_stk->content > tmp->content)
+			{
+				swap = dupl_stk->content;
+				dupl_stk->content = tmp->content;
+				tmp->content = swap;
+			}
+			tmp = tmp->next;
+		}
+		dupl_stk = dupl_stk->next;
+	}
+	return (head);
+}
+
+int	find_mid(t_stk *top, int len, char stack_name)
+{
+	t_d_list *dupl_stk;
 	t_d_list *stack;
+	t_d_list *head;
 	
 	if (stack_name == 'a')
 		stack = top->stk_a;
 	if (stack_name == 'b')
 		stack = top->stk_b;
-	if (value == 1)
-		tmp = duplicate_stack(stack, len - 1);
-	else
-		tmp = duplicate_stack(stack, len);
-	if (tmp == NULL)
+
+	dupl_stk = duplicate_stack(stack, len - 1);
+	if (dupl_stk == NULL)
 	{
 		free_tab_without_index(top->spl);
 		ft_d_lstclear(&stack, &free);
 		exit(-1);
 	}
-	head = tmp;
-	while (!is_sorted(head) && tmp != NULL)
-	{
-		tmp2 = tmp->next;
-		while(tmp2)
-		{
-			if (tmp->content > tmp2->content)
-			{
-				swap = tmp->content;
-				tmp->content = tmp2->content;
-				tmp2->content = swap;
-			}
-			tmp2 = tmp2->next;
-		}
-		tmp = tmp->next;
-	}
+	head = sort_duplicate_stack(dupl_stk);
 	return (len_div_2(*head, len));
 }
