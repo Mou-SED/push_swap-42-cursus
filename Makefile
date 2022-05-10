@@ -6,9 +6,9 @@ LIBS_DIR		:= lib
 LIBFTPRINTF_DIR	:= $(LIBS_DIR)/ft_printf
 
 # *********************************** Files ************************************
-NAME	:= push_swap
-MAIN	:= main.c
-SRCS	:= display_actions.c \
+NAME		:= push_swap
+MAIN		:= main.c
+SRCS		:= display_actions.c \
 			doubly_linked_list.c \
 			doubly_linked_list_2.c \
 			errors.c \
@@ -31,13 +31,19 @@ SRCS	:= display_actions.c \
 			sorting_five_numbers.c \
 			sorting3.c \
 			sorting_four_numbers.c
-OBJS	:= $(SRCS:.c=.o)
-HEADERS	:= push_swap.h
+OBJS		:= $(SRCS:.c=.o)
+HEADERS		:= push_swap.h
+
+BNAME		:= checker
+BMAIN		:= checker.c
+GNLSRCS		:= get_next_line.c get_next_line_utils.c
+GNLOBJS		:= $(GNLSRCS:.c=.o)
+
 LIBFTPRINTF	:= libftprintf.a
 
 # ****************************** Compiler Options ******************************
 CC			:= cc
-CFLAGS		:= -Wall -Wextra -Werror -g
+CFLAGS		:= -Wall -Wextra -Werror
 INCLUDES	:= -I $(INCLUDES_DIR)
 LIBS		:= -L $(LIBFTPRINTF_DIR) -lftprintf
 
@@ -58,17 +64,31 @@ $(OBJS_DIR)/%.o: $(SRCS_DIR)/%.c $(addprefix $(INCLUDES_DIR)/, $(HEADERS))
 	@$(MKDIR) $(OBJS_DIR)
 	@$(CC) $(CFLAGS) $(INCLUDES) -c -o $@ $<
 
+
 $(LIBFTPRINTF_DIR)/$(LIBFTPRINTF):
 	@make -C $(LIBFTPRINTF_DIR)
 
+bonus: $(BNAME)
+
+$(BNAME): $(addprefix $(OBJS_DIR)/, $(OBJS)) $(BMAIN) \
+			$(addprefix $(OBJS_DIR)/, $(GNLOBJS)) \
+			$(addprefix $(INCLUDES_DIR)/, $(HEADERS)) \
+			$(LIBFTPRINTF_DIR)/$(LIBFTPRINTF)
+	@$(CC) $(CFLAGS) $(INCLUDES) $(LIBS) $(addprefix $(OBJS_DIR)/, $(OBJS)) \
+$(addprefix $(OBJS_DIR)/, $(GNLOBJS)) $(BMAIN) -o $(BNAME)
+
+$(OBJS_DIR)/%.o: ./lib/get_next_line/%.c ./lib/get_next_line/get_next_line.h
+	@$(MKDIR) $(OBJS_DIR)
+	@$(CC) $(CFLAGS) -c -o $@ $<
+
 clean:
 	@make clean -C $(LIBFTPRINTF_DIR)
-	@$(RM) $(OBJS_DIR)
+	@$(RM) $(OBJS_DIR) $(BOBJS) $(GNLOBJS)
 
 fclean:	clean
 	@make fclean -C $(LIBFTPRINTF_DIR)
-	@$(RM) $(NAME)
+	@$(RM) $(NAME) $(BNAME)
 
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re bonus
