@@ -6,7 +6,7 @@
 /*   By: moseddik <moseddik@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 19:00:45 by moseddik          #+#    #+#             */
-/*   Updated: 2022/05/10 09:11:21 by moseddik         ###   ########.fr       */
+/*   Updated: 2022/05/10 16:15:43 by moseddik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,13 @@ static int	check_sorted(t_stk *top, char **av)
 	return (0);
 }
 
-static void	sorting(t_stk *top, int ac)
+static void	sorting(t_stk *top)
 {
-	if (ac == 4)
+	if (top->len_a == 3)
 		sorting_three_numbers(top);
-	else if (ac == 5)
+	else if (top->len_a == 4)
 		sorting_four_numbers(top);
-	else if (ac == 6)
+	else if (top->len_a == 5)
 		sorting_five_numbers(top);
 	else
 	{
@@ -59,7 +59,7 @@ int	main(int ac, char **av)
 			ft_d_lstclear(&top.stk_a, &free);
 			return (-1);
 		}
-		sorting(&top, ac);
+		sorting(&top);
 		free_tab_without_index(top.spl);
 		ft_d_lstclear(&top.stk_a, &free);
 		free(top.sorted_array);
