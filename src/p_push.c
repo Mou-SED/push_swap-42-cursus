@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   p_push.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: moseddik <moseddik@student.42.fr>          +#+  +:+       +#+        */
+/*   By: moseddik <moseddik@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/11 19:04:35 by moseddik          #+#    #+#             */
-/*   Updated: 2022/04/03 14:33:41 by moseddik         ###   ########.fr       */
+/*   Updated: 2022/05/09 20:59:38 by moseddik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-void    p_push(t_d_list **top_to_get, t_d_list **top_to_add)
+void	p_push(t_d_list **top_to_get, t_d_list **top_to_add)
 {
-	t_d_list *tmp;
-	t_d_list *node;
+	t_d_list	*tmp;
+	t_d_list	*node;
 
 	if (is_empty(*top_to_get))
 		return ;

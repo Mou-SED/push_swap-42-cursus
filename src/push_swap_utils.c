@@ -3,27 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: moseddik <moseddik@student.42.fr>          +#+  +:+       +#+        */
+/*   By: moseddik <moseddik@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 20:38:35 by moseddik          #+#    #+#             */
-/*   Updated: 2022/04/25 23:08:25 by moseddik         ###   ########.fr       */
+/*   Updated: 2022/05/09 21:04:25 by moseddik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-int is_plus_or_minus(int c)
+int	is_plus_or_minus(int c)
 {
-   if (c == '+' || c == '-')
-	  return (!0);
-   return (0);
+	if (c == '+' || c == '-')
+		return (!0);
+	return (0);
 }
 
-int is_space(int c)
+int	is_space(int c)
 {
-   if (c == ' ' || c == '\t' || c == 32)
-	  return (!0);
-   return (0);
+	if (c == ' ' || c == '\t' || c == 32)
+		return (!0);
+	return (0);
 }
 
 char	*ft_strjoin_char(char *s1, char const *s2, char c)
@@ -32,20 +32,21 @@ char	*ft_strjoin_char(char *s1, char const *s2, char c)
 	size_t	j;
 	char	*newstr;
 
-	if (!s1)
-	{ 
+	if (s1 == NULL)
+	{
 		s1 = (char *)malloc(sizeof(char) * 1);
 		if (s1 == NULL)
-		return (NULL);
-		s1[0] = '\0';        
+			return (NULL);
+		s1[0] = '\0';
 	}
 	newstr = (char *)malloc((sizeof(char)
 				* (ft_strlen(s1) + ft_strlen(s2) + 2)));
-	if (!newstr)
+	if (newstr == NULL)
 		return (NULL);
 	i = -1;
 	while (s1[++i] != '\0')
 		newstr[i] = s1[i];
+	free(s1);
 	newstr[i++] = c;
 	j = 0;
 	while (s2[j] != '\0')
@@ -54,35 +55,36 @@ char	*ft_strjoin_char(char *s1, char const *s2, char c)
 	return (newstr);
 }
 
-char **join_args(char **str)
+char	**join_args(char **str)
 {
-	char *ptr;
-	char **ptr2;
-	int i;
+	char	*ptr;
+	char	**ptr2;
+	int		i;
 
 	ptr = NULL;
 	i = 0;
-	while(str[i] != NULL)
+	while (str[i] != NULL)
 	{
 		ptr = ft_strjoin_char(ptr, str[i++], ' ');
 		if (ptr == NULL)
 			return (NULL);
 	}
-	ptr2 = ft_split(ptr,' ');
+	ptr2 = ft_split(ptr, ' ');
 	if (ptr2 == NULL)
 	{
 		free(ptr);
 		return (NULL);
 	}
+	free(ptr);
 	return (ptr2);
 }
 
-long long ft_atoi_long(const char *str)
+long long	ft_atoi_long(const char *str)
 {
-	int            i;
-	int            s;
-	unsigned long  r;
-	char	*ptr;
+	int				i;
+	int				s;
+	unsigned long	r;
+	char			*ptr;
 
 	ptr = (char *)str;
 	i = 0;

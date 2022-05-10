@@ -27,7 +27,10 @@ SRCS	:= display_actions.c \
 			sorted_array.c \
 			sorting.c \
 			sorting2.c \
-			sorting_3.c
+			sorting_three_numbers.c \
+			sorting_five_numbers.c \
+			sorting3.c \
+			sorting_four_numbers.c
 OBJS	:= $(SRCS:.c=.o)
 HEADERS	:= push_swap.h
 LIBFTPRINTF	:= libftprintf.a

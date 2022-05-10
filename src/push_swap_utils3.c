@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap_utils3.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: moseddik <moseddik@student.42.fr>          +#+  +:+       +#+        */
+/*   By: moseddik <moseddik@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/18 15:49:02 by moseddik          #+#    #+#             */
-/*   Updated: 2022/03/27 17:29:03 by moseddik         ###   ########.fr       */
+/*   Updated: 2022/05/09 21:05:26 by moseddik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,15 +98,4 @@ void	*ft_calloc(size_t count, size_t size)
 		return (0);
 	ft_bzero(ptr, count * size);
 	return (ptr);
-}
-
-void	ft_stack_print(t_d_list *stack, char *name)
-{
-	ft_printf("%s:\n\n", name);
-	while (stack != NULL)
-	{
-		ft_printf("%d[%d]\n", stack->content, stack->flag);
-		stack = stack->next;
-	}
-	ft_printf("\n");
 }

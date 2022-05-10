@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   p_swap.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: moseddik <moseddik@student.42.fr>          +#+  +:+       +#+        */
+/*   By: moseddik <moseddik@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 23:40:03 by moseddik          #+#    #+#             */
-/*   Updated: 2022/04/03 14:29:20 by moseddik         ###   ########.fr       */
+/*   Updated: 2022/05/09 21:02:39 by moseddik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 void	p_swap(t_d_list **top)
 {
-	int tmp;
+	int	tmp;
 
 	if (top == NULL || is_empty(*top) || (*top)->next == NULL)
-        return ;
+		return ;
 	else
 	{
 		tmp = (*top)->next->content;
@@ -25,6 +25,7 @@ void	p_swap(t_d_list **top)
 		(*top)->content = tmp;
 	}
 }
+
 void	sa(t_d_list **top_a)
 {
 	p_swap(top_a);

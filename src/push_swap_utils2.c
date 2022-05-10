@@ -6,18 +6,17 @@
 /*   By: moseddik <moseddik@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 20:52:38 by moseddik          #+#    #+#             */
-/*   Updated: 2022/05/09 14:16:57 by moseddik         ###   ########.fr       */
+/*   Updated: 2022/05/09 21:04:45 by moseddik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-int	ft_strcmp(char *s1,char *s2)
+int	ft_strcmp(char *s1, char *s2)
 {
 	unsigned int	i;
 
 	i = 0;
-
 	while (s1[i] && s2[i] && s1[i] == s2[i])
 		i++;
 	if (s1[i] != s2[i])
