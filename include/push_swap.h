@@ -6,7 +6,7 @@
 /*   By: moseddik <moseddik@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/27 17:53:24 by moseddik          #+#    #+#             */
-/*   Updated: 2022/05/10 09:12:57 by moseddik         ###   ########.fr       */
+/*   Updated: 2022/05/10 14:25:08 by moseddik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define PUSH_SWAP_H
 
 # include "../lib/ft_printf/include/ft_printf.h"
+# include "../lib/get_next_line/get_next_line.h"
 
 # include <stdlib.h>
 # include <stdio.h>
@@ -56,7 +57,7 @@ void		ft_d_lstclear(t_d_list **lst, void (*del)(void *));
 // Libft functions prototype
 int			ft_isdigit(int c);
 char		**ft_split(char const *s, char c);
-char		*ft_strjoin(char const *s1, char const *s2);
+char		*ft_strjoin(char *s1, char *s2);
 size_t		ft_strlen(const	char	*s);
 int			ft_atoi(const char *str);
 char		*ft_substr(char const *s, unsigned int start, size_t len);
