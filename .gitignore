@@ -108,3 +108,6 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
+
+# IDE config files
+.vscode
