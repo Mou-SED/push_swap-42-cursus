@@ -6,7 +6,7 @@
 /*   By: moseddik <moseddik@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 19:00:45 by moseddik          #+#    #+#             */
-/*   Updated: 2022/05/10 16:15:43 by moseddik         ###   ########.fr       */
+/*   Updated: 2022/05/10 16:26:26 by moseddik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,12 @@ static int	check_sorted(t_stk *top, char **av)
 
 static void	sorting(t_stk *top)
 {
-	if (top->len_a == 3)
+	if (top->len_a == 2)
+	{
+		if (top->stk_a->content > top->stk_a->next->content)
+			display_actions(sa, "sa\n", top);
+	}
+	else if (top->len_a == 3)
 		sorting_three_numbers(top);
 	else if (top->len_a == 4)
 		sorting_four_numbers(top);
