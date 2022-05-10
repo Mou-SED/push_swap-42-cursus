@@ -6,7 +6,7 @@
 /*   By: moseddik <moseddik@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 13:14:22 by moseddik          #+#    #+#             */
-/*   Updated: 2022/05/10 12:00:07 by moseddik         ###   ########.fr       */
+/*   Updated: 2022/05/10 16:24:33 by moseddik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,6 @@ void	check_dupl_args(char **str)
 
 void	ft_print_error(void)
 {
-	printf("Error\n");
+	ft_printf("Error\n");
 	exit(1);
 }
