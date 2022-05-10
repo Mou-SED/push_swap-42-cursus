@@ -6,7 +6,7 @@
 /*   By: moseddik <moseddik@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 13:14:22 by moseddik          #+#    #+#             */
-/*   Updated: 2022/05/09 20:57:47 by moseddik         ###   ########.fr       */
+/*   Updated: 2022/05/10 12:00:07 by moseddik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,10 @@ void	check_dupl_args(char **str)
 		while (str[j])
 		{
 			if (!ft_strcmp(str[i], str[j]))
+			{
+				free_tab_without_index(str);
 				ft_print_error();
+			}
 			j++;
 		}
 		i++;
