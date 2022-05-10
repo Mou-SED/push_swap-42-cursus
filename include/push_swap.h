@@ -6,7 +6,7 @@
 /*   By: moseddik <moseddik@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/27 17:53:24 by moseddik          #+#    #+#             */
-/*   Updated: 2022/05/10 14:25:08 by moseddik         ###   ########.fr       */
+/*   Updated: 2022/05/10 16:21:15 by moseddik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include "../lib/get_next_line/get_next_line.h"
 
 # include <stdlib.h>
-# include <stdio.h>
+# include <unistd.h>
 
 # define MAX_INT 2147483647
 # define MIN_INT -2147483648
