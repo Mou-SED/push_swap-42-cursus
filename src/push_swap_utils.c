@@ -6,7 +6,7 @@
 /*   By: moseddik <moseddik@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 20:38:35 by moseddik          #+#    #+#             */
-/*   Updated: 2022/05/09 21:04:25 by moseddik         ###   ########.fr       */
+/*   Updated: 2022/05/10 12:13:14 by moseddik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,11 @@ char	**join_args(char **str)
 	i = 0;
 	while (str[i] != NULL)
 	{
+		if (str[i][0] == '\0')
+		{
+			free(ptr);
+			ft_print_error();
+		}
 		ptr = ft_strjoin_char(ptr, str[i++], ' ');
 		if (ptr == NULL)
 			return (NULL);
