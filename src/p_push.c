@@ -6,7 +6,7 @@
 /*   By: moseddik <moseddik@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/11 19:04:35 by moseddik          #+#    #+#             */
-/*   Updated: 2022/05/09 20:59:38 by moseddik         ###   ########.fr       */
+/*   Updated: 2022/05/10 17:03:19 by moseddik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ void	p_push(t_d_list **top_to_get, t_d_list **top_to_add)
 		tmp = (*top_to_get);
 		(*top_to_add)->flag = tmp->flag;
 		(*top_to_get) = (*top_to_get)->next;
-		(*top_to_get)->prev = NULL;
+		if (*top_to_get != NULL)
+			(*top_to_get)->prev = NULL;
 		free(tmp);
 	}
 	else
